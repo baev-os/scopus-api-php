@@ -19,7 +19,7 @@ class CiteScoreInformationList
     {
         if (isset($this->data['citeScoreInfo'])) {
             return $this->citeScoreInfos ?: $this->citeScoreInfos = array_map(function ($citeScoreInfo) {
-                return new CiteScoreInformationList($citeScoreInfo);
+                return new CiteScoreInfo($citeScoreInfo);
             }, $this->data['citeScoreInfo']);
         }
         return null;
