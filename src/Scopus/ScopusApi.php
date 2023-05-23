@@ -11,7 +11,7 @@ use Scopus\Response\Author;
 use Scopus\Response\CitationCount;
 use Scopus\Response\SearchResults;
 use Scopus\Response\AbstractCitations;
-use Scopus\Response\SerialMetaData;
+use Scopus\Response\SerialMetaDataResults;
 use Scopus\Util\XmlUtil;
 
 class ScopusApi
@@ -69,6 +69,11 @@ class ScopusApi
         return new SearchQuery($this, $query);
     }
 
+    public function querySerial($query)
+    {
+        return new SearchQuerySerial($this, $query);
+    }
+
     /**
      * @param string $uri
      * @param array $options
@@ -123,7 +128,7 @@ class ScopusApi
                         return new CitationCount($data);
                     }, isset($document['@status']) ? [$document] : $document);
                 case 'serial-metadata-response':
-                    return new SerialMetadata($json['serial-metadata-response']);
+                    return new SerialMetaDataResults($json['serial-metadata-response']);
                 default:
                     throw new Exception(sprintf('Unsupported response type: "%s" for "%s"', $type, $uri));
             }
@@ -138,6 +143,13 @@ class ScopusApi
     public function search(array $query)
     {
         return $this->retrieve(self::SEARCH_URI, [
+            'query' => $query,
+        ]);
+    }
+
+    public function searchSerialTitles(array $query)
+    {
+        return $this->retrieve(self::SERIAL_TITLE_URI, [
             'query' => $query,
         ]);
     }

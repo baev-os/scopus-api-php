@@ -2,10 +2,13 @@
 
 namespace Scopus\Response;
 
-class SerialMetaData
+class SerialMetaDataResults
 {
     /** @var array */
     protected $data;
+
+    /** @var SearchLinks */
+    protected $links;
 
     /** @var EntrySerialTitle[] */
     protected $entries;
@@ -30,5 +33,10 @@ class SerialMetaData
     public function countEntries()
     {
         return isset($this->data['entry']) ? count($this->data['entry']) : 0;
+    }
+
+    public function getLinks()
+    {
+        return $this->links ?: $this->links = new SearchLinks($this->data['link']);
     }
 }
