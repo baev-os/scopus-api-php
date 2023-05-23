@@ -9,7 +9,7 @@ class CiteScoreSubjectRank
 
     public function __construct(array $data)
     {
-        parent::__construct($data);
+        $this->data = $data;
     }
 
     public function getSubjectCode()
