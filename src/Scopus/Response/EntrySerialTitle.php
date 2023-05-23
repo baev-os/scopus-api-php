@@ -59,4 +59,25 @@ class EntrySerialTitle
     {
         return isset($this->data['prism:eIssn']) ? $this->data['prism:eIssn'] : null;
     }
+
+    public function getCiteScoreCurrentMetric()
+    {
+        return isset($this->data['citeScoreYearInfoList']) ?
+            (isset($this->data['citeScoreYearInfoList']['citeScoreCurrentMetric']) ? $this->data['citeScoreYearInfoList']['citeScoreCurrentMetric'] : null) : null;
+    }
+    public function getCiteScoreCurrentMetricYear()
+    {
+        return isset($this->data['citeScoreYearInfoList']) ?
+            (isset($this->data['citeScoreYearInfoList']['citeScoreCurrentMetricYear']) ? $this->data['citeScoreYearInfoList']['citeScoreCurrentMetricYear'] : null) : null;
+    }
+    public function getCiteScoreTracker()
+    {
+        return isset($this->data['citeScoreYearInfoList']) ?
+            (isset($this->data['citeScoreYearInfoList']['citeScoreTracker']) ? $this->data['citeScoreYearInfoList']['citeScoreTracker'] : null) : null;
+    }
+    public function getCiteScoreTrackerYear()
+    {
+        return isset($this->data['citeScoreYearInfoList']) ?
+            (isset($this->data['citeScoreYearInfoList']['citeScoreTrackerYear']) ? $this->data['citeScoreYearInfoList']['citeScoreTrackerYear'] : null) : null;
+    }
 }
