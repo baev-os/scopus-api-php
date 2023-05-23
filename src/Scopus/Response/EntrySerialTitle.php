@@ -7,6 +7,9 @@ class EntrySerialTitle
     /** @var array */
     protected $data;
 
+    /** @var CiteScoreYearInfo[] */
+    protected $citeScoreYearInfos;
+
     public function __construct(array $data)
     {
         $this->data = $data;
@@ -79,5 +82,15 @@ class EntrySerialTitle
     {
         return isset($this->data['citeScoreYearInfoList']) ?
             (isset($this->data['citeScoreYearInfoList']['citeScoreTrackerYear']) ? $this->data['citeScoreYearInfoList']['citeScoreTrackerYear'] : null) : null;
+    }
+
+    public function getCiteScoreYearInfos()
+    {
+        if (isset($this->data['citeScoreYearInfoList']['citeScoreYearInfo'])) {
+            return $this->citeScoreYearInfos ?: $this->citeScoreYearInfos = array_map(function ($citeScoreYearInfo) {
+                return new CiteScoreYearInfo($citeScoreYearInfo);
+            }, $this->data['citeScoreYearInfoList']['citeScoreYearInfo']);
+        }
+        return null;
     }
 }
