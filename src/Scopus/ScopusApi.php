@@ -371,7 +371,7 @@ class ScopusApi
      * Retrieve Serial Title data by issn using Scopus Serial Metadata API
      * @see https://dev.elsevier.com/documentation/SerialTitleAPI.wadl
      *
-     * @param $issn issn or eIssn of publication
+     * @param string $issn or eIssn of publication
      * @param array $options
      * @return SerialMetaData[]
      * @throws Exception
